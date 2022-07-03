@@ -2,9 +2,9 @@
 #include <unistd.h>
 
 /**
- * main - prints exactly "that piece of art"
+ * main - Entry point
  * followed by a new line, to the standard error.
- * Return: Always  0 (Success)
+ * Return: Always  1
  */
 int main(void)
 {
