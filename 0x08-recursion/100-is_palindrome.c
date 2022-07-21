@@ -1,48 +1,43 @@
 #include "main.h"
 
 /**
- * _strlen - getting the lenght of string
- * @s: string
- * Return: Length
- */
+*_strlen_recursion - return string length
+*@s: string point
+*Return: recursion
+*/
 
-int _strlen(char *s)
+int _strlen_recursion(char *s)
 {
-	if (*s == END)
-		return (NULL);
-	s++;
-	return (1 + _strlen(s));
+	if (!*s)
+		return (0);
+	return (1 + _strlen_recursion(++s));
 }
 
 /**
- * split_n_mirror - comparing 1st half to the mirror of 2nd half
- * @s_head: 1st half of string
- * @s_tail: 2nd half of string
- *
- * Return: SUCCESS ? 1 : 0
- */
+*pal - palindrome
+*@s: pointer to string
+*@l: position
+*Return: boolena
+*/
 
-int split_n_mirror(char *s_head, char *s_tail)
+int pal(char *s, int l)
 {
-	if (s_head >= s_tail)
-		return (TRUE);
-
-	if (*s_head == *s_tail)
-		return (split_n_mirror(s_head + 1, s_tail - 1));
-
-	return (NULL);
+	if (l < 1)
+		return (1);
+	if (*s == *(s + l))
+		return (pal(s + 1, l - 2));
+	return (0);
 }
 
 /**
- * is_palindrome - checking if a string is palindrome
- * @s: string
- *
- * Return: SUCCESS ? 1 : 0
- */
+* is_palindrome - palindrome
+* @s: pointer to string
+* Return: recursion
+*/
 
 int is_palindrome(char *s)
 {
-	int len = _strlen(s);
+	int len = _strlen_recursion(s);
 
-	return (split_n_mirror(s, s + len - 1));
+	return (pal(s, len - 1));
 }
