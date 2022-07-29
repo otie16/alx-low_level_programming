@@ -1,34 +1,43 @@
-#include <stdlib.h>
 #include "main.h"
 
 /**
- * main - myltiplies two positive numbers
- * @ac: number of arguments passed to the program
- * @av: array of the arguments as strings
+ * strtow - splitting a string into words
+ * @str: string
  *
- * Return: always 0
+ * Return: string pointer or NULL
  */
-int main(int ac, char **av)
+
+char **strtow(char *str)
 {
-	int i, j;
+	char **_str = malloc(sizeof(char));
+	int len, j, i = 0;
 
-	if (ac != 3)
+	len = strlen(str) + (BYTE * BYTE);
+	_str[0] = malloc(len * sizeof(char));
+
+	if (!_str[0])
+		return (NULL);
+
+	j = 0;
+	while (str[i] != END)
 	{
-		_puts("Error");
-		exit(98);
-	}
-	for (i = 1; i < ac; i++)
-	{
-		for (j = 0; *(av[i] + j); j++)
+		if (str[i] && str[i] != '\t' && str[i] != ' ')
+			_str[0][j++] = str[i];
+
+		else
 		{
-			if ((*(av[i] + j) < 48) || (*(av[i] + j) > 57))
-			{
-				_puts("Error");
-				exit(98);
-			}
+			if (_str[0][j - 1] != '\n' && _str[0][j - 1])
+				_str[0][j++] = '\n';
 		}
+		i++;
 	}
-	prod = atoi(av[1]) * atoi([2]);
 
-	return (0);
+	if (!_str[0][j - 1])
+		return (NULL);
+
+	_str[0][j] = END;
+
+	_str[0][j - 1] = _str[0][j - 1] == '\n' ? END : _str[0][j - 1];
+
+	return (_str);
 }
